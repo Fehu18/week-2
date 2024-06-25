@@ -5,12 +5,12 @@ variable "location" {
 
 variable "resource_group_name" {
   description = "The name of the resource group"
-  default     = "myResourceGroup"
+  default     = "rg-dev-eastus-001"
 }
 
 variable "vnet_name" {
   description = "The name of the virtual network"
-  default     = "myVnet"
+  default     = "vnet-dev-eastus-001"
 }
 
 variable "vnet_address_space" {
@@ -20,7 +20,7 @@ variable "vnet_address_space" {
 
 variable "subnet_name" {
   description = "The name of the subnet"
-  default     = "mySubnet"
+  default     = "snet-dev-eastus-001"
 }
 
 variable "subnet_address_prefix" {
@@ -30,17 +30,17 @@ variable "subnet_address_prefix" {
 
 variable "nsg_name" {
   description = "The name of the network security group"
-  default     = "myNSG"
+  default     = "nsg-dev-eastus-001"
 }
 
 variable "nic_name" {
   description = "The name of the network interface"
-  default     = "myNIC"
+  default     = "nic-dev-eastus-001"
 }
 
 variable "vm_name" {
   description = "The name of the virtual machine"
-  default     = "myVM"
+  default     = "vm-dev-eastus-001"
 }
 
 variable "vm_size" {
@@ -55,33 +55,30 @@ variable "admin_username" {
 
 variable "admin_password" {
   description = "The admin password for the virtual machine"
+  default = "test@123"
 }
 
 variable "key_vault_name" {
   description = "The name of the Key Vault"
-  default     = "myKeyVault"
-}
-
-variable "tenant_id" {
-  description = "The tenant ID for the Key Vault"
+  default     = "kv-dev-eastus-001"
 }
 
 variable "private_endpoint_name" {
   description = "The name of the private endpoint"
-  default     = "myPrivateEndpoint"
+  default     = "pe-dev-eastus-001"
 }
 
 variable "disk_encryption_set_name" {
   description = "The name of the disk encryption set"
-  default     = "myDES"
+  default     = "des-dev-eastus-001"
 }
 
 variable "key_name" {
   description = "The name of the Key Vault key"
-  default     = "myKey"
+  default     = "key-dev-eastus-001"
 }
 
 variable "vm_extension_name" {
   description = "The name of the virtual machine extension"
-  default     = "myVMExtension"
+  default     = "vmext-dev-eastus-001"
 }

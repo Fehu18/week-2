@@ -1,6 +1,3 @@
-provider "azurerm" {
-  features {}
-}
 
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
@@ -60,11 +57,13 @@ resource "azurerm_windows_virtual_machine" "vm" {
   }
 }
 
+data "azurerm_client_config" "current" {}
+
 resource "azurerm_key_vault" "kv" {
   name                = var.key_vault_name
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  tenant_id           = var.tenant_id
+  tenant_id           = data.azurerm_client_config.current.tenant_id
   sku_name            = "standard"
 }
 
@@ -83,20 +82,39 @@ resource "azurerm_private_endpoint" "pe" {
 }
 
 resource "azurerm_disk_encryption_set" "des" {
-
   name                = var.disk_encryption_set_name
-  location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  key_vault_id        = azurerm_key_vault.kv.id
-  key_url             = azurerm_key_vault_key.kv_key.id
-}
+  location            = azurerm_resource_group.rg.location
+  key_vault_key_id    = azurerm_key_vault_key.kv_key.id
 
+  identity {
+    type = "SystemAssigned"
+  }
+}
 
 resource "azurerm_key_vault_key" "kv_key" {
   name         = var.key_name
   key_vault_id = azurerm_key_vault.kv.id
   key_type     = "RSA"
   key_size     = 2048
+
+  key_opts = [
+    "decrypt",
+    "encrypt",
+    "sign",
+    "unwrapKey",
+    "verify",
+    "wrapKey",
+  ]
+
+  rotation_policy {
+    automatic {
+      time_before_expiry = "P30D"
+    }
+
+    expire_after         = "P90D"
+    notify_before_expiry = "P29D"
+  }
 }
 
 resource "azurerm_virtual_machine_extension" "vm_extension" {
