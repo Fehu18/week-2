@@ -65,66 +65,22 @@ resource "azurerm_key_vault" "kv" {
   resource_group_name = azurerm_resource_group.rg.name
   tenant_id           = data.azurerm_client_config.current.tenant_id
   sku_name            = "standard"
-}
+  access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
 
-resource "azurerm_key_vault_access_policy" "example" {
-  key_vault_id = azurerm_key_vault.kv.id
-  tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = data.azurerm_client_config.current.object_id
+    key_permissions = [
+      "Get",
+    ]
 
-  key_permissions = [
-    "get",
-    "list",
-    "create",
-    "delete",
-    "update",
-    "import",
-    "backup",
-    "restore",
-    "recover",
-    "purge",
-  ]
+    secret_permissions = [
+      "Get",
+    ]
 
-  secret_permissions = [
-    "get",
-    "list",
-    "set",
-    "delete",
-    "backup",
-    "restore",
-    "recover",
-    "purge",
-  ]
-
-  certificate_permissions = [
-    "get",
-    "list",
-    "delete",
-    "create",
-    "import",
-    "update",
-    "managecontacts",
-    "getissuers",
-    "listissuers",
-    "setissuers",
-    "deleteissuers",
-    "manageissuers",
-    "recover",
-    "purge",
-  ]
-
-  storage_permissions = [
-    "get",
-    "list",
-    "delete",
-    "set",
-    "update",
-    "regeneratekey",
-    "setsas",
-    "listsas",
-    "getsas",
-    "deletesas",
-  ]
+    storage_permissions = [
+      "Get",
+    ]
+  }
 }
 
 resource "azurerm_private_endpoint" "pe" {
