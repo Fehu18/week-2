@@ -40,7 +40,7 @@ variable "nic_name" {
 
 variable "vm_name" {
   description = "The name of the virtual machine"
-  default     = "vm-dev-eastus-001"
+  default     = "vm-dev-eastus-1"
 }
 
 variable "vm_size" {
