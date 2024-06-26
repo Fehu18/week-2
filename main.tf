@@ -67,6 +67,66 @@ resource "azurerm_key_vault" "kv" {
   sku_name            = "standard"
 }
 
+resource "azurerm_key_vault_access_policy" "example" {
+  key_vault_id = azurerm_key_vault.kv.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = data.azurerm_client_config.current.object_id
+
+  key_permissions = [
+    "get",
+    "list",
+    "create",
+    "delete",
+    "update",
+    "import",
+    "backup",
+    "restore",
+    "recover",
+    "purge",
+  ]
+
+  secret_permissions = [
+    "get",
+    "list",
+    "set",
+    "delete",
+    "backup",
+    "restore",
+    "recover",
+    "purge",
+  ]
+
+  certificate_permissions = [
+    "get",
+    "list",
+    "delete",
+    "create",
+    "import",
+    "update",
+    "managecontacts",
+    "getissuers",
+    "listissuers",
+    "setissuers",
+    "deleteissuers",
+    "manageissuers",
+    "recover",
+    "purge",
+  ]
+
+  storage_permissions = [
+    "get",
+    "list",
+    "delete",
+    "set",
+    "update",
+    "regeneratekey",
+    "setsas",
+    "listsas",
+    "getsas",
+    "deletesas",
+  ]
+}
+
 resource "azurerm_private_endpoint" "pe" {
   name                = var.private_endpoint_name
   location            = azurerm_resource_group.rg.location
