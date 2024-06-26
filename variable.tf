@@ -45,7 +45,7 @@ variable "vm_name" {
 
 variable "vm_size" {
   description = "The size of the virtual machine"
-  default     = "Standard_DS1_v2"
+  default     = "Standard_B2s"
 }
 
 variable "admin_username" {
