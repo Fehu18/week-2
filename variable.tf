@@ -5,12 +5,12 @@ variable "location" {
 
 variable "resource_group_name" {
   description = "The name of the resource group"
-  default     = "rg-dev-eastus-001"
+  default     = "rg-dev-eastus-1"
 }
 
 variable "vnet_name" {
   description = "The name of the virtual network"
-  default     = "vnet-dev-eastus-001"
+  default     = "vnet-dev-eastus-1"
 }
 
 variable "vnet_address_space" {
@@ -20,7 +20,7 @@ variable "vnet_address_space" {
 
 variable "subnet_name" {
   description = "The name of the subnet"
-  default     = "snet-dev-eastus-001"
+  default     = "snet-dev-eastus-1"
 }
 
 variable "subnet_address_prefix" {
@@ -30,12 +30,12 @@ variable "subnet_address_prefix" {
 
 variable "nsg_name" {
   description = "The name of the network security group"
-  default     = "nsg-dev-eastus-001"
+  default     = "nsg-dev-eastus-1"
 }
 
 variable "nic_name" {
   description = "The name of the network interface"
-  default     = "nic-dev-eastus-001"
+  default     = "nic-dev-eastus-1"
 }
 
 variable "vm_name" {
@@ -60,25 +60,25 @@ variable "admin_password" {
 
 variable "key_vault_name" {
   description = "The name of the Key Vault"
-  default     = "kv-dev-eastus-001"
+  default     = "kv-dev-eastus-1"
 }
 
 variable "private_endpoint_name" {
   description = "The name of the private endpoint"
-  default     = "pe-dev-eastus-001"
+  default     = "pe-dev-eastus-1"
 }
 
 variable "disk_encryption_set_name" {
   description = "The name of the disk encryption set"
-  default     = "des-dev-eastus-001"
+  default     = "des-dev-eastus-1"
 }
 
 variable "key_name" {
   description = "The name of the Key Vault key"
-  default     = "key-dev-eastus-001"
+  default     = "key-dev-eastus-1"
 }
 
 variable "vm_extension_name" {
   description = "The name of the virtual machine extension"
-  default     = "vmext-dev-eastus-001"
+  default     = "vmext-dev-eastus-1"
 }
